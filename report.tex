@@ -102,11 +102,39 @@
 
 % Use \include{<path to .tex file>} to include documents
 % For example
-\include{Chapter/Introduction}
-\include{Chapter/Architecture}
-\include{Chapter/Routing}
-\include{Chapter/Applications}
+\input{Chapter/Introduction}
+\input{Chapter/Introduction/Services}
+\input{Chapter/Introduction/Relationships}
+\input{Chapter/Introduction/Components}
+\input{Chapter/Introduction/Organisation}
+
+\input{Chapter/Architecture}
+\input{Chapter/Architecture/Diagram}
+\newpage
+\input{Chapter/Architecture/IP}
+\newpage
+
+
+\input{Chapter/Routing}
+\input{Chapter/Routing/ISIS}
+\newpage
+\input{Chapter/Routing/BGP}
+\newpage
+
+
+\input{Chapter/Applications}
+\input{Chapter/Applications/SSH}
+\newpage
+\input{Chapter/Applications/Web}
+\newpage
+\input{Chapter/Applications/DNS}
+\newpage
+\input{Chapter/Applications/Email}
+\newpage
+
+
 \include{Chapter/Discussion}
+
 \include{Chapter/Contributions}
 
 
