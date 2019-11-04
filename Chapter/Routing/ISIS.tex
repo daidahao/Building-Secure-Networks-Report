@@ -135,7 +135,7 @@ Routes from Laptop 1 to Laptop 3 as well as from Laptop 2 to Laptop 3 are tested
         \includegraphics[width=\linewidth]{isis-traceroute-2-3}
         \caption{\texttt{traceroute} from Laptop 2 (BT002) to Laptop 3 (BT003)}
     \end{subfigure}
-    \caption{Running \texttt{traceroute} between Laptops in BT Network.}
+    \caption{Tracing Routes between Laptops using \texttt{traceroute}.}
     \label{fig:isis-traceroute}
 \end{figure}
 
@@ -152,10 +152,81 @@ Figure \ref{fig:isis-traceroute-broken} shows the route taken is
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\linewidth]{isis-traceroute-broken-1-2}
-    \caption{\texttt{traceroute} from Laptop 2 (BT002) to Laptop 3 (BT003) when Physical Connection between Router 1 (BT-R001) and Router 2 (BT-R002) is broken.}
+    \caption{Tracing Routes from Laptop 2 (BT002) to Laptop 3 (BT003) when Physical Connection between Router 1 (BT-R001) and Router 2 (BT-R002) is broken.}
     \label{fig:isis-traceroute-broken}
 \end{figure}
 
+On the router's side, \texttt{show ip route} and \texttt{show ipv6 route} is used to inspect the routes discovered by IS-IS protocol. In Figure \ref{fig:isis-ip-route} and \ref{fig:isis-ipv6-route}, such routes to other subnets inside BT Network on each router are shown.
+
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.67\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-ip-route-1}
+        \caption{Router 1 (BT-R001)}
+    \end{subfigure}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+	    \begin{subfigure}[b]{\linewidth}
+	        \centering
+	        \includegraphics[width=\linewidth]{isis-ip-route-2}
+	        \caption{Router 2 (BT-R002)}
+	    \end{subfigure}
+	    \\
+	    \begin{subfigure}[b]{\linewidth}
+	        \centering
+	        \includegraphics[width=\linewidth]{isis-ip-route-3}
+	        \caption{Router 3 (BT-R003)}
+	    \end{subfigure}
+	\end{minipage}
+    \caption{IPv4 Routes to Other Subnets on All $3$ Routers Respectively using \texttt{show ip route}.}
+    \label{fig:isis-ip-route}
+\end{figure*}
+
+
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.67\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-ipv6-route-1}
+        \caption{Router 1 (BT-R001)}
+    \end{subfigure}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+	    \begin{subfigure}[b]{\linewidth}
+	        \centering
+	        \includegraphics[width=\linewidth]{isis-ipv6-route-2}
+	        \caption{Router 2 (BT-R002)}
+	    \end{subfigure}
+	    \\
+	    \begin{subfigure}[b]{\linewidth}
+	        \centering
+	        \includegraphics[width=\linewidth]{isis-ipv6-route-3}
+	        \caption{Router 3 (BT-R003)}
+	    \end{subfigure}
+	\end{minipage}
+    \caption{IPv6 Routes to Other Subnets on All $3$ Routers Respectively using \texttt{show ipv6 route}.}
+    \label{fig:isis-ipv6-route}
+\end{figure*}
+
+Noticably, when the physical connection between Router 1 and Router 2 is broken, the route from Router 1 to Router 2 goes through Router 3 instead, as evident in Figure \ref{fig:isis-ip-route-broken}.
+
+\begin{figure}[ht!]
+    \centering    
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-ip-route-broken-1}
+        \caption{IPv4 Routes to Other Subnets on Router 1 using \texttt{show ip route}.}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-ipv6-route-broken-1}
+        \caption{IPv6 Routes to Other Subnets on Router 1 using \texttt{show ip route}.}
+    \end{subfigure}
+    \caption{IP Routes to Other Subnets on Router 1 when Physical Connection between Router 1 (BT-R001) and Router 2 (BT-R002) is broken.}
+    \label{fig:isis-ip-route-broken}
+\end{figure}
 
 \subsection{Commentary}
 
@@ -163,6 +234,7 @@ Figure \ref{fig:isis-traceroute-broken} shows the route taken is
 When initially setting up IS-IS on the interfaces, only the interfaces between routers have been turned on. This leads to laptop's failure to reach a router not directly connected.
 To solve this problem, IS-IS is set up on the interface between a laptop and a router.
 
+\clearpage
 
 
 
