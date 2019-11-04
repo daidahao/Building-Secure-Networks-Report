@@ -30,11 +30,11 @@ All of the above connections are through physical cables.
 
 An IPv4 address range of \texttt{23.0.0.0/8} and IPv6 address range of \texttt{2001:2300::/32} are allocated to BT Network, which are further divided into sub-ranges to be allocated to each subnet.
 
-For IPv4 addressing, a netmask of $n$ is needed for a subnet that demands $X$ host addresses, where $n$ is an integer that satisfies $2^{32-n} - 2 \geq X$ and $n \leq 32$. For our lab, the maximum value for netmask is used in order to minimize the size of each subnet and reserve address space for future customers. However, it's also possible to use a larger value for each Router-Laptop subnet in order to maximize the size of the subnet, given that the number of customers (in this case, $3$) is fixed.
+For IPv4 addressing, a prefix of $n$ is needed for a subnet that demands $X$ host addresses, where $n$ is an integer that satisfies $2^{32-n} - 2 \geq X$ and $n \leq 32$. For our lab, the maximum value for prefix is used in order to minimize the size of each subnet and reserve address space for future customers. However, it's also possible to use a larger value for each Router-Laptop subnet in order to maximize the size of the subnet, given that the number of customers (in this case, $3$) is fixed.
 
-In BT Network, the netmask for each Router-Router and Router-Neighbor subnet is $30$ while the netmask for each Router-Laptop subnet is $28$. In other words, each Router-Router and Router-Neighbor subnet has $2$ guaranteed IPv4 host addresses while each Router-Laptop subnet has $14$ guaranteed IPv4 host addresses. During address block allocation, larger subnet is being considered before smaller one reduce the number of block segments.
+In BT Network, the prefix for each Router-Router and Router-Neighbor subnet is $30$ while the prefix for each Router-Laptop subnet is $28$. In other words, each Router-Router and Router-Neighbor subnet has $2$ guaranteed IPv4 host addresses while each Router-Laptop subnet has $14$ guaranteed IPv4 host addresses. During address block allocation, larger subnet is being considered before smaller one reduce the number of block segments.
 
-For IPv6 addressing, however, each subnet has a fixed netmask of $64$ to ensure that each interface in the subnet has a unique address. The full details of IP address allocation is shown in Table \ref{tab:ip}.
+For IPv6 addressing, however, each subnet has a fixed prefix of $64$ to ensure that each interface in the subnet has a unique address. The full details of IP address allocation is shown in Table \ref{tab:ip}.
 
 \begin{figure}[ht!]
     \centering
@@ -54,8 +54,8 @@ Since both interfaces are on the left-hand side of each router and such arrangem
 \scriptsize{
 \begin{longtable}[]{@{}lllll@{}}
 \toprule
-Subnet & IPv4 Address / Netmask & IPv4 Address Range & IPv6
-Address / Netmask & IPv6 Address Range\tabularnewline
+Subnet & IPv4 Address / Prefix & IPv4 Address Range & IPv6
+Address / Prefix & IPv6 Address Range\tabularnewline
 \midrule
 \endhead
 \texttt{BT-R001} - \texttt{BT001} & \texttt{23.0.0.0/28} &
