@@ -1,0 +1,163 @@
+
+!
+! Last configuration change at 14:35:53 UTC Mon Nov 4 2019 by r002
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname BT-R002
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+dot11 syslog
+ip source-route
+!
+!
+!
+!
+ip cef
+no ip domain lookup
+ip domain name bt.lboro
+ipv6 unicast-routing
+ipv6 cef
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+voice-card 0
+!
+!
+!
+!
+!
+license udi pid CISCO2801 sn FCZ1339C100
+username r002 privilege 15 secret 5 $1$..EF$yfYESFK6llTyMnP.f1ABh0
+!
+!
+ip ssh version 2
+ip ssh dh min size 4096
+ip ssh pubkey-chain
+ username r002
+  key-hash ssh-rsa 601E98BF47BA6CC0089AEC1177F6DEE5 root@BT001
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 23.0.255.2 255.255.255.255
+ ipv6 address 2001:2300:FFFF:2::/128
+!
+interface FastEthernet0/0
+ ip address 23.0.0.50 255.255.255.252
+ ip router isis 
+ duplex auto
+ speed auto
+ ipv6 address 2001:2300:0:3::2/64
+ ipv6 router isis 
+!
+interface FastEthernet0/1
+ ip address 23.0.0.53 255.255.255.252
+ ip router isis 
+ duplex auto
+ speed auto
+ ipv6 address 2001:2300:0:4::1/64
+ ipv6 router isis 
+!
+interface FastEthernet0/1/0
+!
+interface FastEthernet0/1/1
+ switchport access vlan 3
+!
+interface FastEthernet0/1/2
+!
+interface FastEthernet0/1/3
+!
+interface Vlan1
+ ip address 23.0.0.17 255.255.255.240
+ ip router isis 
+ ipv6 address 2001:2300:0:1::1/64
+ ipv6 router isis 
+!
+interface Vlan3
+ ip address 23.0.0.61 255.255.255.252
+ ipv6 address 2001:2300:0:6::1/64
+!
+router isis
+ net 49.0001.0230.0025.5002.00
+ is-type level-1
+ passive-interface Vlan3
+ passive-interface Loopback0
+!
+router bgp 2030
+ bgp log-neighbor-changes
+ neighbor 23.0.0.62 remote-as 3040
+ neighbor 23.0.255.1 remote-as 2030
+ neighbor 23.0.255.1 update-source Loopback0
+ neighbor 23.0.255.3 remote-as 2030
+ neighbor 23.0.255.3 update-source Loopback0
+ neighbor 2001:2300:0:6::2 remote-as 3040
+ neighbor 2001:2300:FFFF:1:: remote-as 2030
+ neighbor 2001:2300:FFFF:1:: update-source Loopback0
+ neighbor 2001:2300:FFFF:3:: remote-as 2030
+ neighbor 2001:2300:FFFF:3:: update-source Loopback0
+ !
+ address-family ipv4
+  no synchronization
+  network 23.0.0.16 mask 255.255.255.240
+  aggregate-address 23.0.0.0 255.0.0.0 summary-only
+  neighbor 23.0.0.62 activate
+  neighbor 23.0.255.1 activate
+  neighbor 23.0.255.3 activate
+  neighbor 2001:2300:0:6::2 activate
+  neighbor 2001:2300:FFFF:1:: activate
+  neighbor 2001:2300:FFFF:3:: activate
+  no auto-summary
+ exit-address-family
+ !
+ address-family ipv6
+  network 2001:2300:0:1::/64
+  aggregate-address 2001:2300::/32 summary-only
+  neighbor 2001:2300:0:6::2 activate
+  neighbor 2001:2300:FFFF:1:: activate
+  neighbor 2001:2300:FFFF:3:: activate
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+!
+!
+mgcp fax t38 ecm
+mgcp behavior g729-variants static-pt
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+ login local
+ transport input telnet ssh
+!
+scheduler allocate 20000 1000
+end
