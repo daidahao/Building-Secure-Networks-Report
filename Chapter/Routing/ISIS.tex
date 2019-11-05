@@ -9,7 +9,7 @@ Figure \ref{fig:isis} shows the design of IS-IS protocol in BT Network. As the f
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.8\linewidth]{isis}
+    \includegraphics[width=\linewidth]{isis}
     \caption{Design of IS-IS Protocol in BT Network.}
     \label{fig:isis}
 \end{figure}
@@ -107,9 +107,37 @@ ip router isis
 ipv6 router isis
 \end{lstlisting}
 
+Below is the configuration for Router 3.
+
+\begin{lstlisting}
+interface Loopback0
+ip address 23.0.255.3 255.255.255.255
+ipv6 address 2001:2300:FFFF:3::/128
+
+router isis
+net 49.0001.0230.0025.5003.00
+is-type level-1
+passive-interface Vlan4
+passive-interface Vlan5
+passive-interface Loopback0
+
+interface FastEthernet0/0
+ip router isis
+ipv6 router isis
+
+interface FastEthernet0/1
+ip router isis
+ipv6 router isis
+
+interface Vlan2
+ip router isis
+ipv6 router isis
+\end{lstlisting}
+
+
 \subsection{Evaluation}
 
-Once the IS-IS is set up, use \texttt{traceroute} command to check the path from Laptop 1 (BT001, IPv4 Address: 23.0.0.2) to Laptop 2 (BT002, IPv4 Address: 23.0.0.18) in the network.
+Once the IS-IS is set up, use \texttt{traceroute} command to check the IPv4 path from Laptop 1 (BT001, IPv4 Address: \texttt{23.0.0.2}) to Laptop 2 (BT002, IPv4 Address: \texttt{23.0.0.18}) in the network.
 
 \begin{lstlisting}[language=sh]
 traceroute 23.0.0.34
@@ -120,7 +148,7 @@ Figure \ref{fig:isis-traceroute} shows the route taken is
 -> Router 1 (BT-R001, IPv4 Address: 23.0.0.1) 
 -> Router 2 (BT-R002, IPv4 Address: 23.0.0.50)
 -> Laptop 2 (BT002, IPv4 Address: 23.0.0.18)}, which is a correct route.
-Routes from Laptop 1 to Laptop 3 as well as from Laptop 2 to Laptop 3 are tested in the figure as well.
+Routes from Laptop 1 to Laptop 3 as well as from Laptop 2 to Laptop 3 are tested and shown in the figure as well.
 
 \begin{figure}[ht!]
     \centering
@@ -132,17 +160,56 @@ Routes from Laptop 1 to Laptop 3 as well as from Laptop 2 to Laptop 3 are tested
     ~
     \begin{subfigure}[b]{\textwidth}
         \centering
+        \includegraphics[width=\linewidth]{isis-traceroute-1-3}
+        \caption{\texttt{traceroute} from Laptop 1 (BT001) to Laptop 3 (BT003)}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
         \includegraphics[width=\linewidth]{isis-traceroute-2-3}
         \caption{\texttt{traceroute} from Laptop 2 (BT002) to Laptop 3 (BT003)}
     \end{subfigure}
-    \caption{Tracing Routes between Laptops using \texttt{traceroute}.}
+    \caption{Tracing IPv4 Routes between Laptops using \texttt{traceroute}.}
     \label{fig:isis-traceroute}
 \end{figure}
 
+Similiar results can be observed for IPv6 routes in Figure \ref{fig:isis-traceroute-ipv6}. The IPv6 Route taken from Laptop 1 to Laptop 2 is 
+\texttt{Laptop 1 (BT001, IPv6 Address: 2001:2300::2)
+-> Router 1 (BT-R001, IPv6 Address: 2001:2300::1) 
+-> Router 2 (BT-R002, IPv6 Address: 2001:2300:3:2::2)
+-> Laptop 2 (BT002, IPv6 Address: 2001:2300:0:1::2)}, , which is also a correct route.
+Routes from Laptop 1 to Laptop 3 as well as from Laptop 2 to Laptop 3 are tested and shown in the figure as well.
+
+
+\begin{figure}[ht!]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-traceroute-ipv6-1-2}
+        \caption{\texttt{traceroute} from Laptop 1 (BT001) to Laptop 2 (BT002)}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-traceroute-ipv6-1-3}
+        \caption{\texttt{traceroute} from Laptop 1 (BT001) to Laptop 3 (BT003)}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{isis-traceroute-ipv6-2-3}
+        \caption{\texttt{traceroute} from Laptop 2 (BT002) to Laptop 3 (BT003)}
+    \end{subfigure}
+    \caption{Tracing IPv6 Routes between Laptops using \texttt{traceroute}.}
+    \label{fig:isis-traceroute-ipv6}
+\end{figure}
+
+\clearpage
+
 To further evaluate the correctness of our implementation, we check the path from Laptop 1 to Laptop 2 under the condition that the physical connection between Router 1 and Router 2 is broken. The IS-IS protocol on Router 1 should be able to find route to Router 2 through Router 3.
 
-Figure \ref{fig:isis-traceroute-broken} shows the route taken is 
-\texttt{Laptop 1 (BT001, IPv4 Address: 23.0.0.2)
+Figure \ref{fig:isis-traceroute-broken} shows the IPv4 route taken is 
+\texttt{Laptop 1 (BT001, IPv6 Address: 23.0.0.2)
 -> Router 1 (BT-R001, IPv4 Address: 23.0.0.1) 
 -> Router 3 (BT-R003, IPv4 Address: 23.0.0.58) 
 -> Router 2 (BT-R002, IPv4 Address: 23.0.0.53)
@@ -152,9 +219,25 @@ Figure \ref{fig:isis-traceroute-broken} shows the route taken is
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.8\linewidth]{isis-traceroute-broken-1-2}
-    \caption{Tracing Routes from Laptop 2 (BT002) to Laptop 3 (BT003) when Physical Connection between Router 1 (BT-R001) and Router 2 (BT-R002) is broken.}
+    \caption{Tracing IPv4 Routes from Laptop 2 (BT002) to Laptop 3 (BT003) when Physical Connection between Router 1 (BT-R001) and Router 2 (BT-R002) is broken.}
     \label{fig:isis-traceroute-broken}
 \end{figure}
+
+Figure \ref{fig:isis-traceroute-broken-ipv6} shows the IPv6 route taken is 
+\texttt{Laptop 1 (BT001, IPv6 Address: 2001:2300::2)
+-> Router 1 (BT-R001, IPv6 Address: 2001:2300::1) 
+-> Router 3 (BT-R003, IPv6 Address: 2001:2300:0:5::2) 
+-> Router 2 (BT-R002, IPv6 Address: 2001:2300:0:4::1)
+-> Laptop 2 (BT002, IPv6 Address: 2001:2300:0:1::2)}, which is also a correct route.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\linewidth]{isis-traceroute-broken-ipv6-1-2}
+    \caption{Tracing IPv6 Routes from Laptop 2 (BT002) to Laptop 3 (BT003) when Physical Connection between Router 1 (BT-R001) and Router 2 (BT-R002) is broken.}
+    \label{fig:isis-traceroute-broken-ipv6}
+\end{figure}
+
+\clearpage
 
 On the router's side, \texttt{show ip route} and \texttt{show ipv6 route} is used to inspect the routes discovered by IS-IS protocol. In Figure \ref{fig:isis-ip-route} and \ref{fig:isis-ipv6-route}, such routes to other subnets inside BT Network on each router are shown.
 
@@ -208,6 +291,8 @@ On the router's side, \texttt{show ip route} and \texttt{show ipv6 route} is use
     \caption{IPv6 Routes to Other Subnets on All $3$ Routers Respectively using \texttt{show ipv6 route}.}
     \label{fig:isis-ipv6-route}
 \end{figure*}
+
+\clearpage
 
 Noticably, when the physical connection between Router 1 and Router 2 is broken, the route from Router 1 to Router 2 goes through Router 3 instead, as evident in Figure \ref{fig:isis-ip-route-broken}.
 
