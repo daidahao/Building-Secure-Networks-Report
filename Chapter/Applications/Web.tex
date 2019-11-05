@@ -15,10 +15,9 @@ Install \texttt{apache2} package on Laptop 1 (BT001, IPv4 Address: 23.0.0.2) usi
 
 \begin{lstlisting}[language=sh]
 sudo apt-get install apache2
-
 \end{lstlisting}
 
-A HTML file named \texttt{index.html} is created as a test webpage, as detailed followed.
+A HTML file named \texttt{index.html} is created as a test webpage, as detailed in Figure \ref{fig:index-html}.
 
 \begin{figure*}[ht!]
 \begin{lstlisting}[language=html]
@@ -31,6 +30,7 @@ A Trustworthy Internet Service Provider at Loughborough University.
 </html>
 \end{lstlisting}
 \caption{Contents of HTML File Named \texttt{index.html}}
+\label{fig:index-html}
 \end{figure*}
 
 Then, the HTML file is copied to the folder \texttt{/var/www/html}. This folder is used to deploy webpages on the server. And the meaning of ‘-r’ is to cover the same name file. 
