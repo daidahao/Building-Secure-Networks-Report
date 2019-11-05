@@ -30,7 +30,8 @@ All of the above connections are through physical cables.
 
 An IPv4 address range of \texttt{23.0.0.0/8} and IPv6 address range of \texttt{2001:2300::/32} are allocated to BT Network, which are further divided into sub-ranges to be allocated to each subnet.
 
-For IPv4 addressing, a prefix of $n$ is needed for a subnet that demands $X$ host addresses, where $n$ is an integer that satisfies $2^{32-n} - 2 \geq X$ and $n \leq 32$. For our lab, the maximum value for prefix is used in order to minimize the size of each subnet and reserve address space for future customers. However, it's also possible to use a larger value for each Router-Laptop subnet in order to maximize the size of the subnet, given that the number of customers (in this case, $3$) is fixed.
+For IPv4 addressing, a prefix of $n$ is needed for a subnet that demands $X$ host addresses, where $n$ is an integer that satisfies $2^{32-n} - 2 \geq X$ and $n \leq 32$. For our lab, the maximum value for prefix is used in order to minimize the size of each subnet and reserve address space for future customers. 
+\textbf{However, it's also possible to use a larger value for each Router-Laptop subnet in order to maximize the size of the subnet, given that the number of customers (in this case, $3$) is fixed.}
 
 In BT Network, the prefix for each Router-Router and Router-Neighbour subnet is $30$ while the prefix for each Router-Laptop subnet is $28$. In other words, each Router-Router and Router-Neighbour subnet has $2$ guaranteed IPv4 host addresses while each Router-Laptop subnet has $14$ guaranteed IPv4 host addresses. During address block allocation, larger subnet is being considered before smaller one reduce the number of block segments.
 

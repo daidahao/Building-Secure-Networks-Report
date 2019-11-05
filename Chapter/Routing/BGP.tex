@@ -128,58 +128,31 @@ aggregate-address 2001:2300::/32 summary-only
 Routes collected through BGP protocol on all $3$ routers are shown in Figure \ref{fig:bgp-route} and \ref{fig:bgp-route-ipv6} using commands \texttt{show bgp} and \texttt{show bgp ipv6}. 
 Routes to DT Network (IPv4: \texttt{34.0.0.0/8}, IPv6: \texttt{2001:3400::/32}), Virgin Network (IPv4: \texttt{56.0.0.0/8}, IPv6: \texttt{2001:5600::/32}), Central Network (IPv4: \texttt{10.2.2.0/24}) and other networks can be observed in the figure.
 
-TODO
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{0.67\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-route-1}
+        \caption{Router 1 (BT-R001)}
+    \end{subfigure}
+    \hfill
+    \begin{minipage}[b]{0.3\textwidth}
+	    \begin{subfigure}[b]{\linewidth}
+	        \centering
+	        \includegraphics[width=\linewidth]{bgp-route-2}
+	        \caption{Router 2 (BT-R002)}
+	    \end{subfigure}
+	    \\
+	    \begin{subfigure}[b]{\linewidth}
+	        \centering
+	        \includegraphics[width=\linewidth]{bgp-route-3}
+	        \caption{Router 3 (BT-R003)}
+	    \end{subfigure}
+	\end{minipage}
+    \caption{IPv4 Routes Collected through BGP Protocols on All $3$ Routers using \texttt{show bgp}.}
+    \label{fig:bgp-route}
+\end{figure*}
 
-% \begin{figure*}[ht!]
-%     \centering
-%     \begin{subfigure}[b]{0.67\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{bgp-route-1}
-%         \caption{Router 1 (BT-R001)}
-%     \end{subfigure}
-%     \hfill
-%     \begin{minipage}[b]{0.3\textwidth}
-% 	    \begin{subfigure}[b]{\linewidth}
-% 	        \centering
-% 	        \includegraphics[width=\linewidth]{bgp-route-2}
-% 	        \caption{Router 2 (BT-R002)}
-% 	    \end{subfigure}
-% 	    \\
-% 	    \begin{subfigure}[b]{\linewidth}
-% 	        \centering
-% 	        \includegraphics[width=\linewidth]{bgp-route-3}
-% 	        \caption{Router 3 (BT-R003)}
-% 	    \end{subfigure}
-% 	\end{minipage}
-%     \caption{IPv4 Routes Collected through BGP Protocols on All $3$ Routers using \texttt{show bgp}.}
-%     \label{fig:bgp-route}
-% \end{figure*}
-
-
-% \begin{figure*}[ht!]
-%     \centering
-%     \begin{subfigure}[b]{0.67\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{bgp-route-ipv6-1}
-%         \caption{Router 1 (BT-R001)}
-%     \end{subfigure}
-%     \hfill
-%     \begin{minipage}[b]{0.3\textwidth}
-% 	    \begin{subfigure}[b]{\linewidth}
-% 	        \centering
-% 	        \includegraphics[width=\linewidth]{bgp-route-ipv6-2}
-% 	        \caption{Router 2 (BT-R002)}
-% 	    \end{subfigure}
-% 	    \\
-% 	    \begin{subfigure}[b]{\linewidth}
-% 	        \centering
-% 	        \includegraphics[width=\linewidth]{bgp-route-ipv6-3}
-% 	        \caption{Router 3 (BT-R003)}
-% 	    \end{subfigure}
-% 	\end{minipage}
-%     \caption{IPv6 Routes Collected through BGP Protocols on All $3$ Routers using \texttt{show bgp ipv6}.}
-%     \label{fig:bgp-route-ipv6}
-% \end{figure*}
 
 
 \clearpage
@@ -187,42 +160,86 @@ TODO
 
 \subsubsection{Connectivity to Provider Central Network}
 
-The connectivity to provider Central Network using BGP protocol is tested and evaluated by tracing routes to IP addresses \texttt{10.2.2.1} and \texttt{10.2.2.253} on Laptop 1 (BT001). As shown in Figure \ref{fig:bgp-central}, connection to Central Network is successfully established through BGP routes.
+The connectivity to provider Central Network using BGP protocol is tested and evaluated by tracing routes to IP addresses \texttt{10.2.2.1} on Laptop 1 (BT001). As shown in Figure \ref{fig:bgp-central}, connection to Central Network is successfully established through BGP routes.
 
-TODO
-
-% \begin{figure*}[ht!]
-%     \centering
-%     \begin{subfigure}[b]{0.67\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{bgp-central-1}
-%         \caption{\texttt{10.2.2.1}}
-%     \end{subfigure}
-%     ~
-%     \begin{subfigure}[b]{0.67\textwidth}
-%         \centering
-%         \includegraphics[width=\linewidth]{bgp-central-2}
-%         \caption{\texttt{10.2.2.253}}
-%     \end{subfigure}
-%     \caption{IPv4 Routes to Central Network on Laptop 1 (BT001) using \texttt{traceroute}.}
-%     \label{fig:bgp-central}
-% \end{figure*}
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-central-1}
+        \caption{\texttt{10.2.2.1}}
+    \end{subfigure}
+    ~
+    % \begin{subfigure}[b]{0.67\textwidth}
+    %     \centering
+    %     \includegraphics[width=\linewidth]{bgp-central-2}
+    %     \caption{\texttt{10.2.2.253}}
+    % \end{subfigure}
+    \caption{Tracing IPv4 Routes to Central Network on Laptop 1 (BT001) using \texttt{traceroute}.}
+    \label{fig:bgp-central}
+\end{figure*}
 
 
 \clearpage
 
 
 \subsubsection{Connectivity to Customer DT Network}
-TODO
+The connectivity to customer DT Network using BGP protocol is tested and evaluated by tracing routes to IP addresses \texttt{34.0.0.2}, \texttt{34.0.0.18} and \texttt{34.0.0.34} on Laptop 1 (BT001). As shown in Figure \ref{fig:bgp-dt}, connection to DT Network is successfully established through BGP routes.
 
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-dt-1}
+        \caption{\texttt{34.0.0.2}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-dt-2}
+        \caption{\texttt{34.0.0.18}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-dt-3}
+        \caption{\texttt{34.0.0.34}}
+    \end{subfigure}
+    ~
+    \caption{Tracing IPv4 Routes to DT Network on Laptop 1 (BT001) using \texttt{traceroute}.}
+    \label{fig:bgp-dt}
+\end{figure*}
 
 
 
 \clearpage
 
 \subsubsection{Connectivity to Peer Virgin Network}
-TODO
+The connectivity to peer Virgin Network using BGP protocol is tested and evaluated by tracing routes to IP addresses \texttt{56.0.0.2}, \texttt{56.0.0.18} and \texttt{56.0.0.34} on Laptop 1 (BT001). As shown in Figure \ref{fig:bgp-virgin}, connection to Virgin Network is successfully established through BGP routes.
 
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-virgin-1}
+        \caption{\texttt{56.0.0.2}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-virgin-2}
+        \caption{\texttt{56.0.0.18}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-virgin-3}
+        \caption{\texttt{56.0.0.34}}
+    \end{subfigure}
+    ~
+    \caption{Tracing IPv4 Routes to Virgin Network on Laptop 1 (BT001) using \texttt{traceroute}.}
+    \label{fig:bgp-virgin}
+\end{figure*}
 
 
 
@@ -230,7 +247,24 @@ TODO
 
 
 \subsubsection{Connectivity to Other Networks}
-TODO
+The connectivity to other networks using BGP protocol is tested and evaluated by tracing routes to IP addresses \texttt{78.0.0.2} (Sonara Network) and \texttt{89.0.0.18} (NTT Network) on Laptop 1 (BT001). As shown in Figure \ref{fig:bgp-virgin}, connection to Virgin Network is successfully established through BGP routes.
+
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-other-1}
+        \caption{\texttt{78.0.0.2}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-other-2}
+        \caption{\texttt{89.0.0.18}}
+    \end{subfigure}
+    \caption{Tracing IPv4 Routes to Other Networks on Laptop 1 (BT001) using \texttt{traceroute}.}
+    \label{fig:bgp-virgin}
+\end{figure*}
 
 
 

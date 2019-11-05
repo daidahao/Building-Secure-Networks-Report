@@ -3,7 +3,12 @@
 
 \subsection{Design}
 
-IS-IS is short for Intermediate System to Intermediate System Routing Protocol. In this lab, the IS-IS is used as the Interior Gateway Protocol (IGP). 
+Due to the limitation of the static routing, routers cannot find alternative paths if a set path is broken and thus a new path need to be set manually. 
+In contrast, dynamic routing always finds the least cost path even when the previous least cost path is broken.
+Popular dynamic routing protocols include distance vector based protocols like RIP and link state based protocols like IS-IS and OSPF. 
+
+In this lab, the IS-IS is used as the Interior Gateway Protocol (IGP), which provides faster convergence and larger scalability compared to distance vector based protocols. 
+IS-IS is short for Intermediate System to Intermediate System Routing Protocol.
 By using this protocol, each router maintains a database which has a map of the whole topology and all routers have the same information. The best path to every destination is computed by all routers. 
 Figure \ref{fig:isis} shows the design of IS-IS protocol in BT Network. As the figure shows, the network only has level-1 routers for internal routing.
 
@@ -318,6 +323,12 @@ Noticably, when the physical connection between Router 1 and Router 2 is broken,
 \subsubsection{Problem: IS-IS Not Set Up for Laptop-Router Interface}
 When initially setting up IS-IS on the interfaces, only the interfaces between routers have been turned on. This leads to laptop's failure to reach a router not directly connected.
 To solve this problem, IS-IS is set up on the interface between a laptop and a router.
+
+\subsubsection{Alternative Solution to Passive Interfaces}
+While turning interfaces connected to outside network into passive interfaces does enable other routers in the network to connect to outside networks through those interfaces, it demands extra computing resource for computing routes to external subnets. 
+
+\textbf{Alternatively, one can disable IS-IS on such interfaces and replace the external next-hop for each out-going route in BGP with the internal router to which the next-hop is directly connected to. That prevents Router-Neighbour subnet from participating in IS-IS routing and eliminates the extra computing consumption while preserving the connectivity between internal routers and outside networks.}
+
 
 \clearpage
 
