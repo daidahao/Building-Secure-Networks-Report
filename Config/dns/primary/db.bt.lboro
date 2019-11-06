@@ -1,0 +1,27 @@
+;
+; BIND data file for BT.LBORO
+;
+$TTL	604800
+@	IN	SOA	bt.lboro. root.bt.lboro. (
+			      13	; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@	IN	NS	ns.bt.lboro.
+@	IN	NS	ns2.bt.lboro.
+www	IN	CNAME	bt.lboro.
+ns	IN	A	23.0.0.34
+ns	IN	AAAA	2001:2300:0:2::2
+ns2	IN	A	23.0.0.2
+ns2	IN	AAAA	2001:2300:0:0::2
+@	IN	A	23.0.0.2
+@	IN	AAAA	2001:2300:0:0::2
+@	IN	MX	10	bt003.bt.lboro.
+bt001	IN	A	23.0.0.2
+bt001	IN	AAAA	2001:2300:0:0::2
+bt002	IN	A	23.0.0.18
+bt002	IN	AAAA	2001:2300:0:1::2
+bt003	IN	A	23.0.0.34
+bt003	IN	AAAA	2001:2300:0:2::2

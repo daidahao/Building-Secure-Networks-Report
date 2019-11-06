@@ -62,27 +62,18 @@ zone “23.in-addr.arpa’ {
 \end{lstlisting}
 
 Then, the files related to forward zone and reverse zone are edited. 
+The file \texttt{db.bt.lboro} whose contents are shown in Listing \ref{fig:dns-primary-db-bt-lboro} defines the forward DNS configuration.
 
-The contents of file \texttt{db.bt.lboro} which is shown in Figure \ref{fig:db-bt-lboro} defines the forward DNS configuration.
-
-\begin{figure*}[ht!]
-% TODO
-\caption{Contents of Forward DNS Configuration File Named \texttt{db.bt.lboro}}
-\label{fig:db-bt-lboro}
-\end{figure*}
+\lstinputlisting[caption={Contents of Forward DNS Configuration File Located at \texttt{/etc/bind/db.bt.lboro} on Primary DNS Server (Laptop 3).},label={fig:dns-primary-db-bt-lboro},captionpos=b]{Config/dns/primary/db.bt.lboro}
 
 
 Serial number is the version number of this file and it should be increased after changing the file. 
 For each line of records, the prefix (eg. \texttt{bt001}), domain type (eg. \texttt{A}) and value (eg. \texttt{23.0.0.2}) are specified.
 
 
-\begin{figure*}[ht!]
-% TODO
-\caption{Contents of Reverse DNS Configuration File Named \texttt{db.23}}
-\label{fig:db-23}
-\end{figure*}
+\lstinputlisting[caption={Contents of Reverse DNS Configuration File Located at \texttt{/etc/bind/db.23}  on Primary DNS Server (Laptop 3).},label={fig:dns-primary-db-23},captionpos=b]{Config/dns/primary/db.23}
 
-Figure \ref{fig:db-23} shows the configuration for the reverse zone. 
+Listing \ref{fig:dns-primary-db-23} shows the configuration for the reverse zone. 
 The serial number needs to be increased on each change as well. 
 For each line of records, the first column of match list should be reverse host part of IP address. 
 For example, the IP address of Laptop 1 (BT001) is \texttt{23.0.0.2} and the host part of it is \texttt{0.0.2}. Therefore, the reverse host part of it should be \texttt{2.0.0}. 
@@ -117,9 +108,15 @@ Restart \texttt{bind9} service for configurations to take effect.
 service bind9 restart
 \end{lstlisting}
 
-Now, Laptop 2 should be able to receive DNS records from the master server and act as a secondary DNS server.
+Now, Laptop 1 should be able to receive DNS records from the master server and act as a secondary DNS server.
 
+On client's side, Laptop 3 and 2 are set as nameservers in file \texttt{/etc/network/interfaces} on all $3$ laptops.
 
+\begin{lstlisting}[language=sh]
+dns-nameservers 23.0.0.34 23.0.0.2
+\end{lstlisting}
+
+Full configurations for both primary and secondary DNS server are detailed in Appendix \ref{app:dns}.
 
 
 \subsection{Evaluation}

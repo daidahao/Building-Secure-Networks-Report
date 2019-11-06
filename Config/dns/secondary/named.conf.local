@@ -1,0 +1,19 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "bt.lboro" {
+	type slave;
+	file "db.bt.lboro";
+	masters { 23.0.0.34; };
+};
+
+zone "0.0.23.in-addr.arpa" {
+	type slave;
+	file "db.23";
+	masters { 23.0.0.34; };
+}; 
