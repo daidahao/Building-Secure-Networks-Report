@@ -270,6 +270,36 @@ The connectivity to other networks using BGP protocol is tested and evaluated by
 
 \clearpage
 
+\subsubsection{Connectivity to Virgin when Direct Physical Connection Is Down}
+In addition, the connectivity to peer Virgin Network under the unfortunate condition that the direct physical connection is down is also tested. 
+Traced routes to IP addresses \texttt{56.0.0.2}, \texttt{56.0.0.18} and \texttt{56.0.0.34} on Laptop 1 (BT001) are shown in Figure \ref{fig:bgp-virgin-broken}.
+
+Alternative connection to Virgin Network is successfully established through Central Network (ASN: 42).
+
+\begin{figure*}[ht!]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-virgin-broken-1}
+        \caption{\texttt{56.0.0.2}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-virgin-broken-2}
+        \caption{\texttt{56.0.0.18}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[b]{\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{bgp-virgin-broken-3}
+        \caption{\texttt{56.0.0.34}}
+    \end{subfigure}
+    ~
+    \caption{Tracing IPv4 Routes to Virgin Network on Laptop 1 (BT001) using \texttt{traceroute} When Direct Physical Connection Is Broken .}
+    \label{fig:bgp-virgin-broken}
+\end{figure*}
+
 
 \subsection{Commentary}
 

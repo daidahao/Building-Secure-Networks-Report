@@ -68,7 +68,7 @@ The contents of file \texttt{db.bt.lboro} which is shown in Figure \ref{fig:db-b
 \begin{figure*}[ht!]
 % TODO
 \caption{Contents of Forward DNS Configuration File Named \texttt{db.bt.lboro}}
-\lable{fig:db-bt-lboro}
+\label{fig:db-bt-lboro}
 \end{figure*}
 
 
@@ -79,7 +79,7 @@ For each line of records, the prefix (eg. \texttt{bt001}), domain type (eg. \tex
 \begin{figure*}[ht!]
 % TODO
 \caption{Contents of Reverse DNS Configuration File Named \texttt{db.23}}
-\lable{fig:db-23}
+\label{fig:db-23}
 \end{figure*}
 
 Figure \ref{fig:db-23} shows the configuration for the reverse zone. 
@@ -266,7 +266,7 @@ In terms of connectivity, all three laptops are able to directly \texttt{ping} t
 \end{figure*}
 
 
-
+\clearpage
 
 
 
@@ -281,6 +281,7 @@ Using \texttt{dig} directly does not return IPv6 addresses for domains. It turns
 \subsubsection{Problem: Reverse DNS Not Working}
 Using \texttt{dig -x 23.0.0.2} does not return any answer initially.
 It's later realized that the reverse DNS zone name has been wrongly set to \texttt{0.0.23.in-addr.arpa}.
+
 To set up reverse DNS properly, the DNS zone should be \texttt{3.in-addr.arpa}. In addition, the first column for each DNS record inside file \texttt{db.23} should be the reverse host name (eg. \texttt{2.0.0} for IP address \texttt{23.0.0.2}). 
 
 

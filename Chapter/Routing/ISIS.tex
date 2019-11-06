@@ -45,7 +45,7 @@ BT-R003 & 23.0.255.3 & 2001:2300:ffff:3:: & 49.0001.0230.0025.5003.00\tabularnew
 \label{tab:isis}
 \end{longtable}
 
-
+\clearpage
 
 \subsection{Implementation}
 
@@ -77,7 +77,6 @@ ip router isis
 ipv6 router isis
 \end{lstlisting}
 
-\clearpage
 
 However, IS-IS routes should not be broadcasted nor received through the loopback interface (\texttt{Loopback0}) while the route to corresponding subnet should be broadcasted to other internal routers. Therefore, the loopback interface should be a passive interface in IS-IS protocol.
 
