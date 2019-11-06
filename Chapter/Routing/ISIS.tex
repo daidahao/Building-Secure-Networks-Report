@@ -324,6 +324,7 @@ When initially setting up IS-IS on the interfaces, only the interfaces between r
 To solve this problem, IS-IS is set up on the interface between a laptop and a router.
 
 \subsubsection{Alternative Solution to Passive Interfaces}
+\label{sec:isis-alternative}
 While turning interfaces connected to outside network into passive interfaces does enable other routers in the network to connect to outside networks through those interfaces, it demands extra computing resource for computing routes to external subnets. 
 
 \textbf{Alternatively, one can disable IS-IS on such interfaces and replace the external next-hop for each out-going route in BGP with the internal router to which the next-hop is directly connected to. That prevents Router-Neighbour subnet from participating in IS-IS routing and eliminates the extra computing consumption while preserving the connectivity between internal routers and outside networks.}

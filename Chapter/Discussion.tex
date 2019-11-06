@@ -2,8 +2,31 @@
 \label{chap:discussion}
 
 \section{Conclusions}
+Several conclusions can be drawn from this lab.
 
+\begin{enumerate}
+\item
+  BT Network, a small Tier-2 ISP, has been built and well tested. 
+\item
+  BT Network provides both intra-domain and inter-domain Internet connection to its users. It serves common Internet applications including Web, DNS and Email as well.
+\item
+  BT Network forms and implements business relationships with neighbouring ISPs.
+\item
+  Both IS-IS and BGP routing protocols can provide alternative route(s) to the destination when one of the physicial links is down.  
+\end{enumerate}
 
 
 \section{Further Work}
+
+For the future, the following improvements are being considered.
+
+\begin{enumerate}
+\item
+  Implement the alternative \textbf{next-hop solution} instead of "passive interface" as in Section \ref{sec:isis-alternative}.
+\item
+  Fully test the implementation of BGP routing in IPv6. We are unable to test it as no neighbouring ISP has set up IPv6 BGP routing as far as we know.
+\item
+  Provide other Internet services such as Dynamic Host Configuration Protocol (DHCP)\citep{rfc2131} and File Transfer Protocol (FTP)\citep{rfc959}.
+\end{enumerate}
+
 
