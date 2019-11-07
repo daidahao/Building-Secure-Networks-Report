@@ -64,14 +64,14 @@ zone “23.in-addr.arpa’ {
 Then, the files related to forward zone and reverse zone are edited. 
 The file \texttt{db.bt.lboro} whose contents are shown in Listing \ref{fig:dns-primary-db-bt-lboro} defines the forward DNS configuration.
 
-\lstinputlisting[caption={Contents of Forward DNS Configuration File Located at \texttt{/etc/bind/db.bt.lboro} on Primary DNS Server (Laptop 3).},label={fig:dns-primary-db-bt-lboro},captionpos=b]{Config/dns/primary/db.bt.lboro}
+\lstinputlisting[caption={Contents of Forward DNS Configuration File Located at \texttt{/etc/bind/db.bt.lboro} on Primary DNS Server (Laptop 3).},label={fig:dns-primary-db-bt-lboro},captionpos=t]{Config/dns/primary/db.bt.lboro}
 
 
 Serial number is the version number of this file and it should be increased after changing the file. 
 For each line of records, the prefix (eg. \texttt{bt001}), domain type (eg. \texttt{A}) and value (eg. \texttt{23.0.0.2}) are specified.
 
 
-\lstinputlisting[caption={Contents of Reverse DNS Configuration File Located at \texttt{/etc/bind/db.23}  on Primary DNS Server (Laptop 3).},label={fig:dns-primary-db-23},captionpos=b]{Config/dns/primary/db.23}
+\lstinputlisting[caption={Contents of Reverse DNS Configuration File Located at \texttt{/etc/bind/db.23}  on Primary DNS Server (Laptop 3).},label={fig:dns-primary-db-23},captionpos=t]{Config/dns/primary/db.23}
 
 Listing \ref{fig:dns-primary-db-23} shows the configuration for the reverse zone. 
 The serial number needs to be increased on each change as well. 
