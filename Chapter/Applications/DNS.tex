@@ -266,7 +266,15 @@ In terms of connectivity, all three laptops are able to directly \texttt{ping} t
 \clearpage
 
 
+Under the unfortunate condition that the primary server (Laptop 3) is disconnected from the Internet, availability of DNS service in BT is also tested. As shown in Figure \ref{fig:dns-backup}, DNS records are successfully retrived from the secondary DNS server (Laptop 2, IPv4 Address: \texttt{23.0.0.2}) despite the fact that the primary server is down.
 
+
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width=\linewidth]{dns-backup}
+    \caption{Querying DNS Records for \texttt{bt.lboro} on Laptop 2 When Primary DNS Server (Laptop 3) Is Down.}
+    \label{fig:dns-backup}
+\end{figure*}
 
 
 \subsection{Commentary}
